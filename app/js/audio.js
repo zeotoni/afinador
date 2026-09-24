@@ -1,3 +1,5 @@
+import Pitch from "./pitch.js";
+
 class Tuner {
     constructor() {
         this.middleA = 440;
@@ -18,13 +20,14 @@ class Tuner {
             "B",
         ];
 
+        this.pitch = new Pitch(this.bufferSize);
+
     }
+
 
     init() {
         this.audioContext = new window.AudioContext();
         this.analyser = this.audioContext.createAnalyser();
-
-
     }
 
     startRecord() {
@@ -42,16 +45,17 @@ class Tuner {
     };
 
     readLoop() {
-        const arr = new Uint8Array(this.analyser.frequencyBinCount);
-        this.analyser.getByteFrequencyData(arr);
+        const input = new Float32Array(this.pitch.detector.inputLength);
 
-        const media = arr.reduce((soma, valor) => soma + valor, 0) / arr.length;
+        this.analyser.getFloatTimeDomainData(input);
 
-        this.frameCount = (this.frameCount || 0) + 1;
-        if (this.frameCount % 15 === 0) {
-            console.log(Math.round(media));
-        }
+        const [pitch, clarity] = this.pitch.update(
+            input,
+            this.audioContext.sampleRate
+        );
 
         requestAnimationFrame(() => this.readLoop());
     }
 }
+
+export default Tuner;
