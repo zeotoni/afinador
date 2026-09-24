@@ -1,9 +1,8 @@
+import Note from "./note.js";
 import Pitch from "./pitch.js";
 
 class Tuner {
     constructor() {
-        this.middleA = 440;
-        this.semitone = 69;
         this.bufferSize = 4096;
         this.noteStrings = [
             "C",
@@ -21,6 +20,7 @@ class Tuner {
         ];
 
         this.pitch = new Pitch(this.bufferSize);
+        this.note = new Note();
 
     }
 
@@ -53,6 +53,11 @@ class Tuner {
             input,
             this.audioContext.sampleRate
         );
+
+        if (clarity > 0.9) {
+            this.note.noteByFrequence(pitch);
+        }
+
 
         requestAnimationFrame(() => this.readLoop());
     }
