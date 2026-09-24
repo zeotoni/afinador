@@ -4,30 +4,15 @@ import Pitch from "./pitch.js";
 class Tuner {
     constructor() {
         this.bufferSize = 4096;
-        this.noteStrings = [
-            "C",
-            "C♯",
-            "D",
-            "D♯",
-            "E",
-            "F",
-            "F♯",
-            "G",
-            "G♯",
-            "A",
-            "A♯",
-            "B",
-        ];
-
         this.pitch = new Pitch(this.bufferSize);
         this.note = new Note();
-
     }
 
 
     init() {
         this.audioContext = new window.AudioContext();
         this.analyser = this.audioContext.createAnalyser();
+        this.analyser.fftSize = this.bufferSize;
     }
 
     startRecord() {
@@ -35,6 +20,7 @@ class Tuner {
         navigator.mediaDevices
             .getUserMedia({ audio: true })
             .then(function (stream) {
+                self.input = new Float32Array(self.pitch.detector.inputLength);
                 self.audioContext.createMediaStreamSource(stream).connect(self.analyser);
                 self.readLoop();
 
@@ -45,12 +31,10 @@ class Tuner {
     };
 
     readLoop() {
-        const input = new Float32Array(this.pitch.detector.inputLength);
-
         this.analyser.getFloatTimeDomainData(input);
 
         const [pitch, clarity] = this.pitch.update(
-            input,
+            this.input,
             this.audioContext.sampleRate
         );
 
