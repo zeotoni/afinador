@@ -31,7 +31,7 @@ class Tuner {
     };
 
     readLoop() {
-        this.analyser.getFloatTimeDomainData(input);
+        this.analyser.getFloatTimeDomainData(this.input);
 
         const [pitch, clarity] = this.pitch.update(
             this.input,
@@ -39,7 +39,7 @@ class Tuner {
         );
 
         if (clarity > 0.9) {
-            this.note.noteByFrequence(pitch);
+            const fullNote = this.note.getFullNote(pitch);
         }
 
 
