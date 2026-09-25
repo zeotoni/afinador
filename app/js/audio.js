@@ -1,3 +1,4 @@
+import Display from "./display.js";
 import Note from "./note.js";
 import Pitch from "./pitch.js";
 
@@ -6,6 +7,7 @@ class Tuner {
         this.bufferSize = 4096;
         this.pitch = new Pitch(this.bufferSize);
         this.note = new Note();
+        this.display = new Display();
     }
 
 
@@ -40,6 +42,7 @@ class Tuner {
 
         if (clarity > 0.9) {
             const fullNote = this.note.getFullNote(pitch);
+            this.display.update(fullNote);
         }
 
 
