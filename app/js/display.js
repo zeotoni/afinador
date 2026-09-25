@@ -6,7 +6,9 @@ class Display {
 
     constructor() {
         this.noteSpan = document.createElement("span");
+        this.noteSpan.classList.add("note__value");
         this.frequencySpan = document.createElement("span");
+        this.frequencySpan.classList.add("note__frequency");
         this.noteContainer.appendChild(this.noteSpan);
         this.noteContainer.appendChild(this.frequencySpan);
     }
