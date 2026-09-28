@@ -1,4 +1,4 @@
-import { PitchDetector } from "https://esm.sh/pitchy@4";
+import { PitchDetector } from "./vendor/pitchy.js";
 
 
 class Pitch {
