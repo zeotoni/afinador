@@ -15,7 +15,6 @@
     --border: oklch(0.95 0.01 240 / 10%);
 
     --radius: 0.75rem;
-    --radius: 0.75rem;
 }
 
 body {
@@ -124,6 +123,21 @@ body {
     transition: transform 150ms ease;
 }
 
-.mic-button:active {
-    transform: scale(0.95);
+.footer {
+    text-align: center;
+    margin: 1.25rem 0;
+}
+
+.footer a {
+    font-family: monospace;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    color: var(--muted);
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: color 150ms ease;
+}
+
+.footer a:hover {
+    color: var(--foreground);
 }
