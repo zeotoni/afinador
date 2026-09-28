@@ -7,8 +7,10 @@ class Display {
     constructor() {
         this.noteSpan = document.createElement("span");
         this.noteSpan.classList.add("note__value");
+        this.noteSpan.textContent = "C";
         this.frequencySpan = document.createElement("span");
         this.frequencySpan.classList.add("note__frequency");
+        this.frequencySpan.textContent = "440 Hz";
         this.noteContainer.appendChild(this.noteSpan);
         this.noteContainer.appendChild(this.frequencySpan);
     }
