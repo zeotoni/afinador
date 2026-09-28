@@ -1,4 +1,4 @@
-const CACHE = 'afination-v1';
+const CACHE = 'afination-v2';
 
 const ARQUIVOS = [
   '/',
@@ -19,7 +19,7 @@ const ARQUIVOS = [
   '/app/js/vendor/pitchy.js',
 
   // Imagens
-  '/app/images/logo.png',
+  '/app/images/logo.webp',
 
   // Ícones
   '/app/icons/icon-192.png',
