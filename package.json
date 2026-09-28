@@ -1,0 +1,18 @@
+{
+  "name": "afination",
+  "version": "1.0.0",
+  "description": "App pwa de afinador para violão feito com JavaScript, HTML e CSS.",
+  "main": "sw.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "pitchy": "^4.1.0"
+  },
+  "devDependencies": {
+    "esbuild": "^0.28.2"
+  }
+}
