@@ -5,7 +5,7 @@ class Pitch {
 
     constructor(bufferSize) {
         this.detector = PitchDetector.forFloat32Array(bufferSize);
-        this.detector.minVolumeDecibels = -10;
+        this.detector.minVolumeDecibels = -15;
     }
 
     update(input, sampleRate) {

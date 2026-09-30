@@ -22,7 +22,13 @@ class Tuner {
     startRecord() {
         const self = this;
         navigator.mediaDevices
-            .getUserMedia({ audio: true })
+            .getUserMedia({
+                audio: {
+                    echoCancellation: false,
+                    noiseSuppression: false,
+                    autoGainControl: false
+                }
+            })
             .then(function (stream) {
                 self.input = new Float32Array(self.pitch.detector.inputLength);
                 self.audioContext.createMediaStreamSource(stream).connect(self.analyser);
@@ -42,7 +48,7 @@ class Tuner {
             this.audioContext.sampleRate
         );
 
-        if (clarity > 0.9) {
+        if (clarity > 0.9 && pitch >= 70 && pitch <= 1200) {
             const fullNote = this.note.getFullNote(pitch);
             this.display.update(fullNote);
             this.indicator.update(fullNote);

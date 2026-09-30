@@ -1,4 +1,4 @@
-const CACHE = 'afination-v3';
+const CACHE = 'afination-v4';
 
 const ARQUIVOS = [
   '/',
